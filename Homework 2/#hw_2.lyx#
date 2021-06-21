@@ -1,0 +1,688 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 1cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Homework 2
+\end_layout
+
+\begin_layout Author
+Dan Wang (
+\emph on
+daw1230
+\emph default
+@uw.edu)
+\end_layout
+
+\begin_layout Section
+Writing assignments
+\end_layout
+
+\begin_layout Subsection
+Kalman Gain
+\end_layout
+
+\begin_layout Standard
+For the predicted state, we have 
+\begin_inset Formula $p_{1}=\frac{1}{\bar{\sigma}\sqrt{2\pi}}\exp\left(-\frac{\left(x-\bar{\mu}\right)^{2}}{2\overline{\sigma}^{2}}\right)$
+\end_inset
+
+, that is, 
+\begin_inset Formula $x\sim\mathcal{N}\left(\bar{\mu},\,\bar{\sigma}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For the observation, we have 
+\begin_inset Formula $p_{2}=\frac{1}{\sigma_{obs}\sqrt{2\pi}}\exp\left(-\frac{\left(z-x\right)^{2}}{2\sigma_{obs}^{2}}\right)=\frac{1}{\sigma_{obs}\sqrt{2\pi}}\exp\left(-\frac{\left(x-z\right)^{2}}{2\sigma_{obs}^{2}}\right)$
+\end_inset
+
+, that is, 
+\begin_inset Formula $x\sim\mathcal{N}\left(z,\,\sigma_{obs}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As a multiplication of the obove two, the Kalman filter correction has mean
+ given by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\mu=\frac{\sigma_{obs}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}\bar{\mu}+\frac{\overline{\sigma}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}z=\left(1-K\right)\bar{\mu}+Kz=\bar{\mu}+K\left(z-\bar{\mu}\right),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+where 
+\begin_inset Formula $K=\frac{\overline{\sigma}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}$
+\end_inset
+
+.
+ For variance, we have
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\sigma^{2}=\frac{1}{\overline{\sigma}^{-2}+\sigma_{obs}^{-2}}=\frac{\sigma_{obs}^{2}}{\overline{\sigma}^{2}+\sigma_{obs}^{2}}\overline{\sigma}^{2}=\left(1-K\right)\overline{\sigma}^{2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Motion Model Jacobian
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G=\left(\begin{array}{ccc}
+1 & 0 & -\delta_{trans}sin\left(\theta+\delta_{rot1}\right)\\
+0 & 1 & \delta_{trans}cos\left(\theta+\delta_{rot1}\right)\\
+0 & 0 & 1
+\end{array}\right)$
+\end_inset
+
+ and
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $V=\left(\begin{array}{ccc}
+-\delta_{trans}sin\left(\theta+\delta_{rot1}\right) & cos\left(\theta+\delta_{rot1}\right) & 0\\
+\delta_{trans}cos\left(\theta+\delta_{rot1}\right) & sin\left(\theta+\delta_{rot1}\right) & 0\\
+1 & 0 & 1
+\end{array}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Programming assignments
+\end_layout
+
+\begin_layout Subsection
+EKF implementation
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Real-robot-path"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/path_ekf_a.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/path_ekf_a_2.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Real-robot-path"
+
+\end_inset
+
+EKF: Real robot path and the filter path under the default parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mean-position-error"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The mean position error increases as the data factor and filter factor
+ increase.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/ekf_b.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mean-position-error"
+
+\end_inset
+
+EKF: Mean position error with regard to log2 scale of 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mean-position-error-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The mean position error remains small and is not affected by the filter
+ factor, while the ANEES decreases as the filter factor increases.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/ekf_c_mean.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/ekf_c_anees.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mean-position-error-1"
+
+\end_inset
+
+EKF: Mean position error and ANEES with regard to log2 scale of 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+PF implementation
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Real-robot-path-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/path_pf_a.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/path_pf_2.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Real-robot-path-1"
+
+\end_inset
+
+PF: Real robot path and the filter path under the default parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mean-position-error-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The mean position error increases as the data factor and filter factor
+ increase.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/pf_b.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mean-position-error-2"
+
+\end_inset
+
+PF: Mean position error with regard to log2 scale of 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Mean-position-error-1-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The mean position changes parabolically with the filter factor.
+ The ANEES increases dramatically as the filter factor decreases.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/pf_c.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/pf_c_2.png
+	width 10cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Mean-position-error-1-1"
+
+\end_inset
+
+PF: Mean position error and ANEES with regard to log2 scale of 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PF:-Mean-position"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Note that the y-axes are in different scales.
+ With particle numbers increasing, the ANEES decreases very obviously.
+ The mean position error also decreases, but the effect of increasing particle
+ number on mean position error is not as much as on ANEES.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/pf_d_mean_20.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/pf_d_mean_50.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/pf_d_mean_500.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/pf_d_anees_20.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/pf_d_anees_50.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/pf_d_anees_500.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PF:-Mean-position"
+
+\end_inset
+
+PF: Mean position error (top three plots with 20, 50, and 500 particles,
+ respectively) and ANEES (bottom three plots with 20, 50, and 500 particles,
+ respectively) with regard to log2 scale of 
+\begin_inset Formula $r$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

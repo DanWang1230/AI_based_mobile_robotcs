@@ -1,0 +1,1312 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Homework 3
+\end_layout
+
+\begin_layout Author
+Dan Wang
+\end_layout
+
+\begin_layout Section
+A
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+ Implementation
+\end_layout
+
+\begin_layout Standard
+Evaluation upon different 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ values and visualize the final path and state visited:
+\end_layout
+
+\begin_layout Standard
+1.
+ 
+\begin_inset Formula $\epsilon=1$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cost of path: 251.450793
+\end_layout
+
+\begin_layout Standard
+State expanded: 1781
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/Astaer_1.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Real-robot-path"
+
+\end_inset
+
+
+\begin_inset Formula $\epsilon=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2.
+ 
+\begin_inset Formula $\epsilon=10$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cost of path: 257.308658
+\end_layout
+
+\begin_layout Standard
+State expanded: 1224
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/Astaer_10.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Real-robot-path-1"
+
+\end_inset
+
+
+\begin_inset Formula $\epsilon=10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+3.
+ 
+\begin_inset Formula $\epsilon=20$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Cost of path: 256.722871
+\end_layout
+
+\begin_layout Standard
+State expanded: 1591
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/Astaer_20.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Real-robot-path-1-1"
+
+\end_inset
+
+
+\begin_inset Formula $\epsilon=20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Discussions: Vanilla A
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+ is guaranteed to find the lowest cost of path, that is, the shortest path.
+ Weighted A
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+ can reduce the number of expanded states and thus improve the efficiency,
+ at the cost of deviating somewhat from the optimal path.
+ Also, as 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ getting larger (like 20 in this case), the effect of reducing the expanded-stat
+e number can be compromised.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:RRT-Implementation"
+
+\end_inset
+
+RRT Implementation
+\end_layout
+
+\begin_layout Standard
+Providing mean and standard deviation of cost and plan time over 10 runs,
+ this section reports results of the three cases: (5% probability, 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+), (20% probability, 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+), and (20% probability, 
+\begin_inset Formula $\eta=0.5$
+\end_inset
+
+).
+ We can compare the first two cases for problem 1 and the last two cases
+ for problem 2.
+\end_layout
+
+\begin_layout Standard
+Case 1: Bias the sampling to pick the goal with 5% probability (and 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 372.88
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 50.85
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 39.34 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 60.00 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrt_5.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrt_5_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of"
+
+\end_inset
+
+RRT: Final state of the tree with cost of 308.540530 and plan time of 22
+ s as well as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 2: Bias the sampling to pick the goal with 20% probability (and 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 395.23
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 100.00
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 19.27 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 22.94 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrt_20percent.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrt_20percent_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of-1"
+
+\end_inset
+
+RRT: Final state of the tree with cost of 470.389497 and plan time of 2 s
+ as well as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 3: Bias the sampling to pick the goal with 20% probability (and 
+\begin_inset Formula $\eta=0.5$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 308.55
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 60.74
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 4.51 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 5.51 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrt_20percent_eta_point5.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrt_20percent_eta_point5_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of-1-1"
+
+\end_inset
+
+RRT: Final state of the tree with cost of 508.04 and plan time of 21 s as
+ well as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Discussions:
+\end_layout
+
+\begin_layout Enumerate
+Comparing Case 1 and Case 2, we can tell increasing the probability can
+ reduce the plan time.
+\end_layout
+
+\begin_layout Enumerate
+Comparing Case 2 and Case 3, we can tell decreasing 
+\begin_inset Formula $\eta$
+\end_inset
+
+ can reduce both the plan time and mean of cost.
+\end_layout
+
+\begin_layout Section
+RRT
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+ Implementation
+\end_layout
+
+\begin_layout Standard
+Using the same evaluation scheme as in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RRT-Implementation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Case 1: Bias the sampling to pick the goal with 5% probability (and 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 279.26
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 20.84
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 223.11 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 402.04 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrtstar_5.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrtstar_5_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of-2"
+
+\end_inset
+
+RRT
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+: Final state of the tree with cost of 263.96 and plan time of 66 s as well
+ as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 2: Bias the sampling to pick the goal with 20% probability (and 
+\begin_inset Formula $\eta=1$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 329.17
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 92.14
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 75.1 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 114.84 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrtstar_20percent.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrtstar_20percent_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of-2-1-1"
+
+\end_inset
+
+RRT
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+: Final state of the tree with cost of 275.51 and plan time of 403 s as well
+ as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 3: Bias the sampling to pick the goal with 20% probability (and 
+\begin_inset Formula $\eta=0.5$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 255.54
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 23.61
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 553.17 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 1148.05 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/rrtstar_20percent_eta_point5.png
+	width 6cm
+
+\end_inset
+
+
+\begin_inset Formula $\ \ \ \ \ \ $
+\end_inset
+
+
+\begin_inset Graphics
+	filename Figures/rrtstar_20percent_eta_point5_10runs.png
+	width 3cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Final-state-of-2-1"
+
+\end_inset
+
+RRT
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+: Final state of the tree with cost of 242.16 and plan time of 84 s as well
+ as statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Discussions: Compared with the RRT results in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RRT-Implementation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, RRT
+\begin_inset Formula $^{\ast}$
+\end_inset
+
+ algorithm needs more plan time (i.e., large mean of plan time with large
+ standard deviation) but achieves lower cost.
+ Also, we can reach the same conclusions as in Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:RRT-Implementation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ regarding changing 
+\begin_inset Formula $\eta$
+\end_inset
+
+ and bias probability.
+\end_layout
+
+\begin_layout Section
+Nonholonomic Car: RRT Implementation
+\end_layout
+
+\begin_layout Standard
+Providing mean and standard deviation of cost and plan time over 10 runs:
+\end_layout
+
+\begin_layout Standard
+1.
+ Case 1: Bias the sampling to pick the goal with 5% probability
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 493.2 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 58.14 s
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 25.35 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 18.14 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_5.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Final state [349.46, 148.05, 1.55] reached with cost of 469
+ s and plan time of 10 s (Goal state is [350, 150, 1.57])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_5_multiruns.png
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 2: Bias the sampling to pick the goal with 20% probability
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 503.2 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 43.22 s
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 21.23 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 18.01 s
+\end_layout
+
+\begin_layout Standard
+An example of final state is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_20.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Final state [346.05, 159.0, 1.58] reached with cost of 484
+ s and plan time of 9 s (Goal state is [350, 150, 1.57])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_20_multiruns.png
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Statistical results of 10 runs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2.
+ Biasing the sampling to pick the goal with 5% probability and providing
+ mean and standard deviation of cost and plan time over 10 runs (from seed(0)
+ to seed(9)):
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Using the new distance function:
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 506.57 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 51.64 s
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: larger than 101.46 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 124.15 s
+\end_layout
+
+\begin_layout Standard
+Note seeds 5, 6, and 8 are very time-consuming and thus omitted here.
+\end_layout
+
+\begin_layout Standard
+An example of final state using seed(0) is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_seed0_newdistance.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: New distance: Final state [347.36, 150.88, 1.57] reached
+ with cost of 590 s and plan time of 366 s (Goal state is [350, 150, 1.57])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_newdistance_7seeds.png
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Provided distance: Statistical results from seeds (0)–(4),
+ (7), and (9)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Using the provided (old) distance function:
+\end_layout
+
+\begin_layout Standard
+Mean of cost: 474.9 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of cost: 44.89 s
+\end_layout
+
+\begin_layout Standard
+Mean of plan time: 39.91 s
+\end_layout
+
+\begin_layout Standard
+Standard deviation of plan time: 67.18 s
+\end_layout
+
+\begin_layout Standard
+An example of final state using seed(0) is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_seed0_olddistance.png
+	width 6cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Provided distance: Final state [353.63 158.56 1.57] reached
+ with cost of 475 s and plan time of 14 s (Goal state is [350, 150, 1.57])
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Figures/nonholonomic_rrt_olddistance_10seeds.png
+	width 12cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Nonholonomic Car: Provided distance: Statistical results from seed(0) to
+ seed(9)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Discussions: The new distance function doesn't consider the practical way
+ that the car moves.
+ Compared with the provided distance function, the new distance function
+ yields larger cost and plan time.
+\end_layout
+
+\end_body
+\end_document
