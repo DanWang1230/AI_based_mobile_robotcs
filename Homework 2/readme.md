@@ -6,4 +6,6 @@ We will use the odometry-based motion model. We assume that there are landmarks 
 
 We assume a noise model for the odometry motion model with parameters α and a separate noise model for the bearing observations with parameter β. The landmark ID observation is noise-free. See the provided starter code for implementation details. At each timestep, the robot starts from the current state and moves according to the control input. The robot then receives a landmark observation from the world. We will use this information to localize the robot over the whole time sequence with an EKF and PF.
 
+Please see HW2.pdf for instructions and hw_2.pdf for results.
+
 ![](Figures/path_pf_a.png)
